@@ -1,50 +1,6 @@
 <!DOCTYPE html>
-  <head>
-    <title>桃鉄カード売り場</title>
-    <meta charset="utf-8">
-    <link rel="icon" type="image/x-icon" href="./favicon.png">
-    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
-    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
-    <py-env>
-      - pandas
-      - matplotlib
-      - folium  
-    </py-env>   
-  </head>
-
-  <body>
-    <div id="folium" style="width: 100%; height: 100%; background-color:#ccc"></div>
-      <py-script output="folium">
-
-import pandas as pd
-import folium
-
-from pyodide.http import open_url
-<!--スプレッドシートを読み込む(スプレッドシートのセキュリティを変更すること！)-->
-sheet_url = ("https://docs.google.com/spreadsheets/d/1bG-512BNgFMSKzmBdVZEBzcyc8QsW3k-kOxe85OZE0U/export?format=csv&gid=0")
-
-url_content = open_url(sheet_url)
-shoplists = pd.read_csv(url_content)
-
-m = folium.Map(location=[35.70,139.66], zoom_start=3)
-
-
-for index, row in shoplists.iterrows():
-  folium.Circle(
-    location= [row['latitude'],row['longitude']],
-    radius=120000,
-    popup=folium.Popup(row['card_1']+ "\r\n" + row['card_2']+ "\r\n" + row['card_3']+ "\r\n" + row['card_4']+ "\r\n" + row['card_5']+ "\r\n" + row['card_6']+ "\r\n" + row['card_7']+ "\r\n" + row['card_8'], max_width=100),
-    color=row['color'],
-    fill_color=row['color'],
-    fill=True
-  ).add_to(m)
-
-
-folium.LayerControl().add_to(m)
-
-m
-
-
-      </py-script>    
-  </body>
+<html>
+<body>
+<h1>Hello World</h1>
+</body>
 </html>
