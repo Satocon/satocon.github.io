@@ -1,4 +1,4 @@
-<html>
+<!DOCTYPE html>
   <head>
     <title>桃鉄カード売り場</title>
     <meta charset="utf-8">
@@ -9,15 +9,11 @@
       - pandas
       - matplotlib
       - folium  
-    </py-env>
-    <style>
-      text {
-          display: block;
-      }   
-  </style>
-    </head>
-    <body>
-      <div id="folium" style="width: 100%; height: 100%; background-color:#ccc"></div>
+    </py-env>   
+  </head>
+
+  <body>
+    <div id="folium" style="width: 100%; height: 100%; background-color:#ccc"></div>
       <py-script output="folium">
 
 import pandas as pd
@@ -49,6 +45,6 @@ folium.LayerControl().add_to(m)
 m
 
 
-      </py-script>
-    </body>
+      </py-script>    
+  </body>
 </html>
