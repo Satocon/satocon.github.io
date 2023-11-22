@@ -49,7 +49,7 @@ for index, row in store_lists.iterrows():
   folium.Circle(
     location= [row['緯度'],row['経度']],
     radius=120000,
-    popup=folium.Popup(row['カード1']+ "\r\n" + row['カード2']+ "\r\n" + row['カード3']+ "\r\n" + row['カード4']+ "\r\n" + row['カード5']+ "\r\n" + row['カード6']+ "\r\n" + row['カード7']+ "\r\n" + row['カード8'], max_width=100),
+    tooltip=row['カード1']+ "\r\n" + row['カード2']+ "\r\n" + row['カード3']+ "\r\n" + row['カード4']+ "\r\n" + row['カード5']+ "\r\n" + row['カード6']+ "\r\n" + row['カード7']+ "\r\n" + row['カード8'],
     color=row['色'],
     fill_color=row['色'],
     fill=True
