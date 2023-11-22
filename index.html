@@ -30,11 +30,11 @@ m = folium.Map(location=[35.70,139.66], zoom_start=3)
 
 for index, row in shoplists.iterrows():
   folium.Circle(
-    location= [row['latitude'],row['longitude']],
+    location= [row['緯度'],row['経度']],
     radius=120000,
-    popup=folium.Popup(row['card_1']+ "\r\n" + row['card_2']+ "\r\n" + row['card_3']+ "\r\n" + row['card_4']+ "\r\n" + row['card_5']+ "\r\n" + row['card_6']+ "\r\n" + row['card_7']+ "\r\n" + row['card_8'], max_width=100),
-    color=row['color'],
-    fill_color=row['color'],
+    popup=folium.Popup(row['カード1']+ "\r\n" + row['カード2']+ "\r\n" + row['カード3']+ "\r\n" + row['カード4']+ "\r\n" + row['カード5']+ "\r\n" + row['カード6']+ "\r\n" + row['カード7']+ "\r\n" + row['カード8'], max_width=100),
+    color=row['色'],
+    fill_color=row['色'],
     fill=True
   ).add_to(m)
 
