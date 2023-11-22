@@ -20,8 +20,8 @@ import folium
 
 from pyodide.http import open_url
 from folium.features import DivIcon
-<!--スプレッドシートを読み込む(スプレッドシートのアクセス権を変更すること！)-->
 
+<!--スプレッドシートを読み込む(スプレッドシートのアクセス権を変更すること！)-->
 sheet_url = ("https://docs.google.com/spreadsheets/d/1bG-512BNgFMSKzmBdVZEBzcyc8QsW3k-kOxe85OZE0U/export?format=csv&gid=0")
 
 url_content = open_url(sheet_url)
@@ -29,13 +29,23 @@ store_lists = pd.read_csv(url_content)
 
 <!--マップを描く-->
 
-<!--最初に開くマップの中心地点-->
+<!--ここからマップを描く。最初にマップの中心地点と拡大要素を指定しておく-->
 m = folium.Map(location=[8.384535865452674, 20.64648465722097], zoom_start=2.1)
 
-<!--スプレッドシートの情報を1行ずつ読み込む-->
 
-<!--円を描いて色を塗る-->
+<!--スプレッドシートの情報を1行ずつ読み込む-->
 for index, row in store_lists.iterrows():
+  <!--駅名を表示する-->  
+  folium.map.Marker(
+  location= [row['緯度'],row['経度']],
+  icon=DivIcon(
+      icon_size=(400,40),
+      icon_anchor=(0,0),
+      html=row['駅名'],
+      )
+  ).add_to(m)
+
+  <!--円を描いて色を塗る-->
   folium.Circle(
     location= [row['緯度'],row['経度']],
     radius=120000,
@@ -45,16 +55,7 @@ for index, row in store_lists.iterrows():
     fill=True
   ).add_to(m)
 
-<!--駅名を表示する-->  
-  folium.map.Marker(
-    location= [row['緯度'],row['経度']],
-    icon=DivIcon(
-        icon_size=(400,40),
-        icon_anchor=(0,0),
-        html=row['駅名'],
-        )
-    ).add_to(m)
-
+  
 folium.LayerControl().add_to(m)
 
 m
