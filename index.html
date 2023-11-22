@@ -19,14 +19,17 @@ import pandas as pd
 import folium
 
 from pyodide.http import open_url
-<!--スプレッドシートを読み込む(スプレッドシートのセキュリティを変更すること！)-->
+from folium.features import DivIcon
+<!--スプレッドシートを読み込む(スプレッドシートのアクセス権を変更すること！)-->
 sheet_url = ("https://docs.google.com/spreadsheets/d/1bG-512BNgFMSKzmBdVZEBzcyc8QsW3k-kOxe85OZE0U/export?format=csv&gid=0")
 
 url_content = open_url(sheet_url)
 shoplists = pd.read_csv(url_content)
 
+<!--マップを描く-->
 m = folium.Map(location=[35.70,139.66], zoom_start=3)
 
+<!--スプレッドシートの情報を1行ずつ読み込む-->
 
 for index, row in shoplists.iterrows():
   folium.Circle(
@@ -37,6 +40,17 @@ for index, row in shoplists.iterrows():
     fill_color=row['色'],
     fill=True
   ).add_to(m)
+
+  folium.map.Marker(
+    location= [row['緯度'],row['経度']],
+    icon=DivIcon(
+        icon_size=(400000,40000),
+        icon_anchor=(0,0),
+        html=row['駅名'],
+        )
+    ).add_to(m)
+
+
 
 
 folium.LayerControl().add_to(m)
