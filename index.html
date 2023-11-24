@@ -69,7 +69,7 @@ for index, row in store_lists.iterrows():
   folium.map.Marker(
     location= [row['緯度'],row['経度']],
     icon=DivIcon(
-      icon_size=(400,40),
+      icon_size=(100,20),
       icon_anchor=(0,0),
       html=row['駅名'],),
     tooltip=row['カード1']+ "\r\n" + row['カード2']+ "\r\n" + row['カード3']+ "\r\n" + row['カード4']+ "\r\n" + row['カード5']+ "\r\n" + row['カード6']+ "\r\n" + row['カード7']+ "\r\n" + row['カード8'],    
