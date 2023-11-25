@@ -19,7 +19,7 @@
             - ball.png
             - unchi.png
             - heri.png
-            - yellow.png
+            - airport.png
             - katana.png
     </py-env>   
   </head>
@@ -67,7 +67,7 @@ for index, row in store_lists.iterrows():
       icon_anchor=(10,10),
       popup_anchor=(0,0)),
   ).add_to(m)
-  
+
   <!--駅名を表示する-->  
   folium.map.Marker(
     location= [row['緯度'],row['経度']],
