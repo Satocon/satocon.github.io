@@ -1,8 +1,7 @@
 <!DOCTYPE html>
   <head>
-    <title>桃鉄カード売り場</title>
+    <title>桃鉄ワールド ❘ カード売り場</title>
     <meta charset="utf-8">
-    <link rel="icon" type="image/x-icon" href="./favicon.png">
     <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
     <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
     <py-env>
@@ -42,16 +41,15 @@ sheet_url = ("https://docs.google.com/spreadsheets/d/1bG-512BNgFMSKzmBdVZEBzcyc8
 url_content = open_url(sheet_url)
 store_lists = pd.read_csv(url_content)
 
-<!--マップを描く-->
 
 <!--ここからマップを描く。最初にマップの中心地点と拡大要素を指定しておく-->
-m = folium.Map(location=[8.384535865452674, 20.64648465722097], zoom_start=2.1,maxZoom=2.5)
+m = folium.Map(location=[3.9948833532516526, 20.82226593026007], zoom_start=2.1,maxZoom=2.5)
 
 
 <!--スプレッドシートの情報を1行ずつ読み込む-->
 for index, row in store_lists.iterrows():
   
-  <!--円を描いて色を塗る-->
+  <!--円を描いて色を塗る
   folium.Circle(
     location= [row['緯度'],row['経度']],
     radius=10,
@@ -59,6 +57,7 @@ for index, row in store_lists.iterrows():
     fill_color=row['色'],
     fill=True,  
   ).add_to(m)
+-->
 
   <!--アイコン追加-->  
   folium.Marker(
@@ -68,6 +67,7 @@ for index, row in store_lists.iterrows():
       icon_anchor=(10,10),
       popup_anchor=(0,0)),
   ).add_to(m)
+  
   <!--駅名を表示する-->  
   folium.map.Marker(
     location= [row['緯度'],row['経度']],
