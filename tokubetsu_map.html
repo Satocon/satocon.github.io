@@ -78,7 +78,7 @@ for index, row in store_lists_tokubetsu.iterrows():
   folium.Marker(
     location= [row['緯度'],row['経度']],
     icon=CustomIcon(icon_image=row['アイコン'],
-      icon_size=(25,25),
+      icon_size=(20,20),
       icon_anchor=(10,10),
       popup_anchor=(0,0)),
   ).add_to(m)
