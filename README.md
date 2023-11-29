@@ -1,2 +1,3 @@
 # satcon.github.io
-桃鉄のカード売り場マップを作製中です。
+Pyscriptで桃鉄ワールドのカード売り場マップを作製しています。
+Google spreadsheetにデータを入力し、Pandasで読み込み、Foliumでマップを描写しています。
