@@ -51,22 +51,12 @@ m = folium.Map(location=[3.9948833532516526, 20.82226593026007], zoom_start=2.1,
 
 <!--スプレッドシートの情報を1行ずつ読み込む-->
 for index, row in store_lists.iterrows():
-  
-  <!--円を描いて色を塗る
-  folium.Circle(
-    location= [row['緯度'],row['経度']],
-    radius=10,
-    color=row['色'],
-    fill_color=row['色'],
-    fill=True,  
-  ).add_to(m)
--->
 
   <!--アイコン追加-->  
   folium.Marker(
     location= [row['緯度'],row['経度']],
     icon=CustomIcon(icon_image=row['アイコン'],
-      icon_size=(25,25),
+      icon_size=(20,20),
       icon_anchor=(10,10),
       popup_anchor=(0,0)),
   ).add_to(m)
@@ -76,7 +66,7 @@ for index, row in store_lists.iterrows():
     location= [row['緯度'],row['経度']],
     icon=DivIcon(
       icon_size=(105,20),
-      icon_anchor=(-10,3),
+      icon_anchor=(-8,6),
       html=row['駅名'],),
     tooltip=row['カード1']+ "\r\n" + row['カード2']+ "\r\n" + row['カード3']+ "\r\n" + row['カード4']+ "\r\n" + row['カード5']+ "\r\n" + row['カード6']+ "\r\n" + row['カード7']+ "\r\n" + row['カード8'],    
   ).add_to(m)
