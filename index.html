@@ -64,15 +64,18 @@ for index, row in store_lists.iterrows():
       popup_anchor=(0,0)),
   ).add_to(m)
 
-  <!--駅名を表示する-->  
-  folium.map.Marker(
-    location= [row['緯度'],row['経度']],
-    icon=DivIcon(
-      icon_size=(105,20),
-      icon_anchor=(-8,6),
-      html=row['駅名'],),
-    tooltip=row['カード1']+ "\r\n" + row['カード2']+ "\r\n" + row['カード3']+ "\r\n" + row['カード4']+ "\r\n" + row['カード5']+ "\r\n" + row['カード6']+ "\r\n" + row['カード7']+ "\r\n" + row['カード8'],    
-  ).add_to(m)
+  <!--駅名を表示する（給油駅の名称はマップがごちゃごちゃするので記載しない）-->
+  if row['エリア'] != '給油駅':
+  
+    folium.map.Marker(
+      location= [row['緯度'],row['経度']],
+      icon=DivIcon(
+        icon_size=(105,20),
+        icon_anchor=(-10,3),
+        html=row['駅名'],),
+      tooltip=row['カード1']+ "\r\n" + row['カード2']+ "\r\n" + row['カード3']+ "\r\n" + row['カード4']+ "\r\n" + row['カード5']+ "\r\n" + row['カード6']+ "\r\n" + row['カード7']+ "\r\n" + row['カード8'],    
+    ).add_to(m)
+
 
   
 folium.LayerControl().add_to(m)
