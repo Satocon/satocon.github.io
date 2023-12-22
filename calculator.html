@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <base target="_top">
+   
     <style>
     body{
         width:80vw;
@@ -9,27 +9,46 @@
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
         font-size: X-large;
         gap:1em;
+        text-align: center;
+        /*place-items: center;←ダメだった*/
         }
     div{background-color: antiquewhite;
     }
     input{
         height:15vh;
-        width:20vw;
+        width:15vw;
         font-size: xx-large;
     }
-    
-    
+    .darkblue{
+        background-color:#2c3248;
+        color:white;
+    }
+    .darkred{
+        background-color:darkred;
+        color:white;
+    }
+    .vertical{
+        writing-mode: vertical-rl;
+    }
+    .blue{
+        background-color: blue;
+        color:white;
+    }
+    .font_red{
+        color:red;
+    }
     </style>
   </head>
   <body>
-    <div></div><div>＋</div><div>－</div><div></div><div>総資産</div>
-    <div>青番</div><div><input type="number" id="blue_add"></div><div><input type="number" id="blue_substract"></div><div id="calculate"><input type="button" value="計算する" onclick="calculation()"></div><div id="blue_total">0</div>
+    <div></div><div class="darkblue">＋</div><div class="darkred">－</div><div></div><div class="vertical">総資産</div>
+    <div class="blue">青番</div><div><input type="number" id="blue_add"></div><div><input type="number" id="blue_substract" class="font_red"></div><div id="calculate"><input type="button" value="計算する" onclick="calculation()" class="vertical"></div><div id="blue_total">0</div>
     <div>赤番</div><div></div><div></div><div></div><div></div>
+    <div>黄番</div><div></div><div></div><div></div><div></div>
     <div>緑番</div><div></div><div></div><div></div><div></div>
-    <div>黄色番</div><div></div><div></div><div></div><div></div>
 
 
     <script>
+
         function calculation(){
             let blue_add_cell = document.getElementById("blue_add");
             let blue_add_value = blue_add_cell.value;
@@ -40,7 +59,7 @@
             console.log(blue_substract_value);
 
             let blue_total_cell = document.getElementById("blue_total");
-            let blue_total_value = blue_total_cell.innerText;  //うまくいってない
+            let blue_total_value = blue_total_cell.innerText;  
             console.log(Number(blue_total_value));
             
             
@@ -48,10 +67,19 @@
             console.log(blue_total_new_value);
 
             blue_total_cell.innerHTML = blue_total_new_value;
-            
-            
+        
+            clearValue();
+
+            function clearValue(){
+            let blue_add_cell_2 = document.getElementById("blue_add");
+            blue_add_cell_2.value="0";
+            let blue_substract_cell_2 = document.getElementById("blue_substract");
+            blue_substract_cell_2.value="0";
+            console.log(blue_add_cell_2);
+        }
         }
 
+        
         
     </script>
 
