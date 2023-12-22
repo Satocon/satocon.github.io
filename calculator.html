@@ -4,16 +4,24 @@
     <base target="_top">
     <style>
     body{
+        width:80vw;
         display:grid;
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        font-size: X-large;
         }
     div{background-color: antiquewhite;
+        height: 15vh;
     }
+    input{
+        height:15vh;
+    }
+    
+    
     </style>
   </head>
   <body>
     <div></div><div>＋</div><div>－</div><div>計算実行</div><div>総資産</div>
-    <div>青番</div><input type="number" id="blue_add"><div><input type="number" id="blue_substract"></div><div id="calculate"><input type="button" value="計算する" onclick="calculation()"></div><div id="blue_total">0</div>
+    <div>青番</div><div><input type="number" id="blue_add"></div><div><input type="number" id="blue_substract"></div><div id="calculate"><input type="button" value="計算する" onclick="calculation()"></div><div id="blue_total">0</div>
     <div>赤番</div><div></div><div></div><div></div><div></div>
     <div>緑番</div><div></div><div></div><div></div><div></div>
     <div>黄色番</div><div></div><div></div><div></div><div></div>
@@ -36,9 +44,9 @@
             
             let blue_total_new_value = Number(blue_total_value) + Number(blue_add_value) - Number(blue_substract_value);
             console.log(blue_total_new_value);
-            
-            
+
             blue_total_cell.innerHTML = blue_total_new_value;
+            
             
         }
 
