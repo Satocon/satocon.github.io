@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <style>
+    body{
+        display:grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        }
+    div{background-color: antiquewhite;
+    }
+    </style>
+  </head>
+  <body>
+    <div></div><div>＋</div><div>－</div><div>計算実行</div><div>総資産</div>
+    <div>青番</div><input type="number" id="blue_add"><div><input type="number" id="blue_substract"></div><div id="calculate"><input type="button" value="計算する" onclick="calculation()"></div><div id="blue_total">0</div>
+    <div>赤番</div><div></div><div></div><div></div><div></div>
+    <div>緑番</div><div></div><div></div><div></div><div></div>
+    <div>黄色番</div><div></div><div></div><div></div><div></div>
+
+
+    <script>
+        function calculation(){
+            let blue_add_cell = document.getElementById("blue_add");
+            let blue_add_value = blue_add_cell.value;
+            console.log(blue_add_value);
+
+            let blue_substract_cell = document.getElementById("blue_substract");
+            let blue_substract_value = blue_substract_cell.value;
+            console.log(blue_substract_value);
+
+            let blue_total_cell = document.getElementById("blue_total");
+            let blue_total_value = blue_total_cell.innerText;  //うまくいってない
+            console.log(Number(blue_total_value));
+            
+            
+            let blue_total_new_value = Number(blue_total_value) + Number(blue_add_value) - Number(blue_substract_value);
+            console.log(blue_total_new_value);
+            
+            
+            blue_total_cell.innerHTML = blue_total_new_value;
+            
+        }
+
+        
+    </script>
+
+  </body>
+</html>
