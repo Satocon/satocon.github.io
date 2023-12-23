@@ -7,75 +7,117 @@
         width:80vw;
         display:grid;
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-        font-size: X-large;
+        column-width: max(20vw);
+        font-size: 2em;
         gap:1em;
         text-align: center;
         /*place-items: center;←ダメだった*/
         }
-    div{background-color: antiquewhite;
+    div{background-color:white;
     }
     input{
-        height:15vh;
-        width:15vw;
-        font-size: xx-large;
+        width:max(15vw,100px);
+        font-size: 3em;
+        border: solid gray 10px;
     }
-    .darkblue{
+    .font_red{/*引き算の入力欄*/
+        color:red;
+        border: solid #8c5454 10px;
+    }
+    input.vertical{/*計算するボタン*/
+        margin-top: 1em;
+        font-size:1em;
+        height:2em;
+        border:solid gray 2px;
+    }
+    .bg_darkblue{
         background-color:#2c3248;
         color:white;
+        font-size: 3em;
     }
-    .darkred{
+    .bg_darkred{
         background-color:darkred;
         color:white;
+        font-size: 3em;
     }
-    .vertical{
-        writing-mode: vertical-rl;
+    .bg_gray{
+        background-color: #2c3248;
+        color:white;
+        padding-top: 1em;
     }
     .blue{
         background-color: blue;
         color:white;
+        width:2em;
+        padding-top: 0.5em;
+    }.red{
+        background-color: red;
+        color:white;
+        width:2em;
+        padding-top: 0.5em;
     }
-    .font_red{
-        color:red;
+    .yellow{
+        background-color: yellow;
+        width:2em;
+        padding-top: 0.5em;
     }
+    .green{
+        background-color: green;
+        width:2em;
+        padding-top: 0.5em;
+    }
+    
     </style>
   </head>
   <body>
-    <div></div><div class="darkblue">＋</div><div class="darkred">－</div><div></div><div class="vertical">総資産</div>
-    <div class="blue">青番</div><div><input type="number" id="blue_add"></div><div><input type="number" id="blue_substract" class="font_red"></div><div id="calculate"><input type="button" value="計算する" onclick="calculation()" class="vertical"></div><div id="blue_total">0</div>
-    <div>赤番</div><div></div><div></div><div></div><div></div>
-    <div>黄番</div><div></div><div></div><div></div><div></div>
-    <div>緑番</div><div></div><div></div><div></div><div></div>
+    <div></div><div class="bg_darkblue">＋</div><div class="bg_darkred">－</div><div></div><div class="bg_gray">総資産</div>
+    <div class="blue">青<br>番</div><div><input type="number" id="blue_add"></div><div><input type="number" id="blue_substract" class="font_red"></div><div id="calculate"><input type="button" value="計算する" onclick="calculation(this)" class="vertical" id="blue"></div><div><input type="number" id="blue_total"></div>
+    <div class="red">赤<br>番</div><div><input type="number" id="red_add"></div><div><input type="number" id="red_substract" class="font_red"></div><div id="calculate"><input type="button" value="計算する" onclick="calculation(this)" class="vertical" id="red"></div><div><input type="number" id="red_total"></div>
+    <div class="yellow">黄<br>番</div><div><input type="number" id="yellow_add"></div><div><input type="number" id="yellow_substract" class="font_red"></div><div id="calculate"><input type="button" value="計算する" onclick="calculation(this)" class="vertical" id="yellow"></div><div><input type="number" id="yellow_total"></div>
+    <div class="green">緑<br>番</div><div><input type="number" id="green_add"></div><div><input type="number" id="green_substract" class="font_red"></div><div id="calculate"><input type="button" value="計算する" onclick="calculation(this)" class="vertical" id="green"></div><div><input type="number" id="green_total"></div>
 
 
     <script>
 
-        function calculation(){
-            let blue_add_cell = document.getElementById("blue_add");
-            let blue_add_value = blue_add_cell.value;
-            console.log(blue_add_value);
+        function calculation(event){
 
-            let blue_substract_cell = document.getElementById("blue_substract");
-            let blue_substract_value = blue_substract_cell.value;
-            console.log(blue_substract_value);
+            let color = event.id;
+            console.log(color);
 
-            let blue_total_cell = document.getElementById("blue_total");
-            let blue_total_value = blue_total_cell.innerText;  
-            console.log(Number(blue_total_value));
+
+            let color_add_cell = document.getElementById(color + "_add");
+            let color_add_value = color_add_cell.value;
+            console.log(color_add_value);
+
+            let color_substract_cell = document.getElementById(color + "_substract");
+            let color_substract_value = color_substract_cell.value;
+            console.log(color_substract_value);
+
+            let color_total_cell = document.getElementById(color + "_total");
+            let color_total_value = color_total_cell.value;  
+            console.log(Number(color_total_value));
             
             
-            let blue_total_new_value = Number(blue_total_value) + Number(blue_add_value) - Number(blue_substract_value);
-            console.log(blue_total_new_value);
+            let color_total_new_value = Number(color_total_value) + Number(color_add_value) - Number(color_substract_value);
+            console.log(color_total_new_value);
 
-            blue_total_cell.innerHTML = blue_total_new_value;
+            if(color_total_new_value < 0){
+                color_total_cell.style.color = "red";
+            }else{color_total_cell.style.color = "black";}
+            
+
+            color_total_cell.value = color_total_new_value;
+
+            
         
             clearValue();
 
             function clearValue(){
-            let blue_add_cell_2 = document.getElementById("blue_add");
-            blue_add_cell_2.value="0";
-            let blue_substract_cell_2 = document.getElementById("blue_substract");
-            blue_substract_cell_2.value="0";
-            console.log(blue_add_cell_2);
+            let color_add_cell_2 = document.getElementById(color + "_add");
+            color_add_cell_2.value="";
+            let color_substract_cell_2 = document.getElementById(color + "_substract");
+            color_substract_cell_2.value="";
+            console.log(color_add_cell_2);
         }
         }
 
