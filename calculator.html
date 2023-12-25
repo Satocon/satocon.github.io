@@ -9,9 +9,8 @@
     body{
         display:grid;
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-        column-width: max(15vw);
-        font-size: 2em;
-        gap:0.5em;
+        font-size: 1em;
+        gap:0.2em;
         text-align: center;
         margin-left: 0.2em;
         margin-right:0.2em;
@@ -20,7 +19,7 @@
     div{background-color:white;
     }
     input{
-        width:max(15vw,100px);
+        width:1.5em;
         font-size: 3em;
         border: solid gray 10px;
     }
@@ -32,6 +31,7 @@
         margin-top: 2em;
         font-size:0.7em;
         height:2em;
+        width:5em;
         border:solid gray 2px;
     }
     .bg_darkblue{
@@ -55,28 +55,34 @@
         color:white;
         width:2em;
         padding-top: 0.5em;
+        margin-left: auto;
     }.red{
         background-color: red;
         color:white;
         width:2em;
         padding-top: 0.5em;
+        margin-left: auto;
     }
     .yellow{
         background-color: yellow;
         width:2em;
         padding-top: 0.5em;
+        margin-left: auto;
     }
     .green{
         background-color: green;
         width:2em;
         color:white;
         padding-top: 0.5em;
+        margin-left: auto;
     }
-    
+    .width_2em{
+        width:2em;
+    }
     </style>
   </head>
   <body>
-    <div></div><div class="bg_darkblue">＋</div><div class="bg_darkred">－</div><div></div><div class="bg_gray">総資産</div>
+    <div class="width_2em"></div><div class="bg_darkblue">＋</div><div class="bg_darkred">－</div><div></div><div class="bg_gray">総資産</div>
     <div class="blue">青<br>番</div><div><input type="number" id="blue_add"></div><div><input type="number" id="blue_substract" class="font_red"></div><div id="calculate"><input type="button" value="計算する" onclick="calculation(this)" class="vertical" id="blue"></div><div><input type="number" id="blue_total"></div>
     <div class="red">赤<br>番</div><div><input type="number" id="red_add"></div><div><input type="number" id="red_substract" class="font_red"></div><div id="calculate"><input type="button" value="計算する" onclick="calculation(this)" class="vertical" id="red"></div><div><input type="number" id="red_total"></div>
     <div class="yellow">黄<br>番</div><div><input type="number" id="yellow_add"></div><div><input type="number" id="yellow_substract" class="font_red"></div><div id="calculate"><input type="button" value="計算する" onclick="calculation(this)" class="vertical" id="yellow"></div><div><input type="number" id="yellow_total"></div>
