@@ -83,53 +83,49 @@
   </head>
   <body>
     <div class="width_2em"></div><div class="bg_darkblue">＋</div><div class="bg_darkred">－</div><div></div><div class="bg_gray">総資産</div>
-    <div class="blue">青<br>番</div><div><input type="number" id="blue_add"></div><div><input type="number" id="blue_substract" class="font_red"></div><div id="calculate"><input type="button" value="計算する" onclick="calculation(this)" class="vertical" id="blue"></div><div><input type="number" id="blue_total"></div>
-    <div class="red">赤<br>番</div><div><input type="number" id="red_add"></div><div><input type="number" id="red_substract" class="font_red"></div><div id="calculate"><input type="button" value="計算する" onclick="calculation(this)" class="vertical" id="red"></div><div><input type="number" id="red_total"></div>
-    <div class="yellow">黄<br>番</div><div><input type="number" id="yellow_add"></div><div><input type="number" id="yellow_substract" class="font_red"></div><div id="calculate"><input type="button" value="計算する" onclick="calculation(this)" class="vertical" id="yellow"></div><div><input type="number" id="yellow_total"></div>
-    <div class="green">緑<br>番</div><div><input type="number" id="green_add"></div><div><input type="number" id="green_substract" class="font_red"></div><div id="calculate"><input type="button" value="計算する" onclick="calculation(this)" class="vertical" id="green"></div><div><input type="number" id="green_total"></div>
+    <div class="blue">青<br>番</div><div><input type="number" id="blue_add"></div><div><input type="number" id="blue_substract" class="font_red" placeholder="-"></div><div id="calculate"><input type="button" value="計算する" onclick="calculation(this)" class="vertical" id="blue"></div><div><input type="number" id="blue_total"></div>
+    <div class="red">赤<br>番</div><div><input type="number" id="red_add"></div><div><input type="number" id="red_substract" class="font_red" placeholder="-"></div><div id="calculate"><input type="button" value="計算する" onclick="calculation(this)" class="vertical" id="red"></div><div><input type="number" id="red_total"></div>
+    <div class="yellow">黄<br>番</div><div><input type="number" id="yellow_add"></div><div><input type="number" id="yellow_substract" class="font_red" placeholder="-"></div><div id="calculate"><input type="button" value="計算する" onclick="calculation(this)" class="vertical" id="yellow"></div><div><input type="number" id="yellow_total"></div>
+    <div class="green">緑<br>番</div><div><input type="number" id="green_add"></div><div><input type="number" id="green_substract" class="font_red" placeholder="-"></div><div id="calculate"><input type="button" value="計算する" onclick="calculation(this)" class="vertical" id="green"></div><div><input type="number" id="green_total"></div>
 
 
     <script>
 
         function calculation(event){
 
-            let color = event.id;
-            console.log(color);
+            const color = event.id;/*青番～緑番のどのボタンを押したかの情報を取得する*/
 
+            const colorAddBox = document.getElementById(color + "_add");/*選択した色番の足し算のセルを選択*/
+            const colorAddValue = colorAddBox.value;/*足し算のセルの値を取得*/
 
-            let color_add_cell = document.getElementById(color + "_add");
-            let color_add_value = color_add_cell.value;
-            console.log(color_add_value);
+            const colorSubstractBox = document.getElementById(color + "_substract");
+            const colorSubstractValue = colorSubstractBox.value;
+            console.log(colorSubstractValue);
 
-            let color_substract_cell = document.getElementById(color + "_substract");
-            let color_substract_value = color_substract_cell.value;
-            console.log(color_substract_value);
-
-            let color_total_cell = document.getElementById(color + "_total");
-            let color_total_value = color_total_cell.value;  
-            console.log(Number(color_total_value));
+            const colorTotalBox = document.getElementById(color + "_total");
+            const colorTotalValue = colorTotalBox.value;  
+            console.log(Number(colorTotalValue));
             
             
-            let color_total_new_value = Number(color_total_value) + Number(color_add_value) - Number(color_substract_value);
-            console.log(color_total_new_value);
+            const colorTotalNewValue = Number(colorTotalValue) + Number(colorAddValue) - Number(colorSubstractValue);
+            console.log(colorTotalNewValue);
 
-            if(color_total_new_value < 0){
-                color_total_cell.style.color = "red";
-            }else{color_total_cell.style.color = "black";}
+            if(colorTotalNewValue < 0){
+                colorTotalBox.style.color = "red";
+            }else{colorTotalBox.style.color = "black";}
             
 
-            color_total_cell.value = color_total_new_value;
+            colorTotalBox.value = colorTotalNewValue;
 
             
         
             clearValue();
 
             function clearValue(){
-            let color_add_cell_2 = document.getElementById(color + "_add");
-            color_add_cell_2.value="";
-            let color_substract_cell_2 = document.getElementById(color + "_substract");
-            color_substract_cell_2.value="";
-            console.log(color_add_cell_2);
+            const colorAddBox2 = document.getElementById(color + "_add");
+            colorAddBox2.value="";
+            const colorSubstractBox2 = document.getElementById(color + "_substract");
+            colorSubstractBox2.value="";
         }
         }
 
