@@ -15,18 +15,12 @@
     <div style="width: 100%; height: 2em; background-color:#008080; color:#fff">
         <h1 style="font-size: 1em;">桃鉄ワールド　いつものマップ</h1>
     </div>
-    <div id="folium"></div>
-
-            <py-tutor>
+    <div id="folium"></div>            
                 <py-config>
                     packages = [
                       "folium",
                       "pandas"
-                    ]
-                    plugins = [
-                      "https://pyscript.net/latest/plugins/python/py_tutor.py"
-                    ]
-                    
+                    ]                    
                 </py-config>
 
                 <py-script>
@@ -70,6 +64,6 @@
 
                     display(m, target="folium")
                 </py-script>
-            </py-tutor> 
+            
   </body>
 </html>
