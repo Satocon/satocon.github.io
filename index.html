@@ -1,88 +1,75 @@
 <!DOCTYPE html>
-  <head>
-    <title>桃鉄ワールド ❘ カード売り場</title>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
-    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
-    <py-env>
-      - pandas
-      - folium
-      - paths:
-            - hoshitobi.png
-            - fukubukuro.png
-            - tono.png
-            - ushi.png
-            - gs.png
-            - blue.png 
-            - kikyu.png
-            - plane.png
-            - ball.png
-            - unchi.png
-            - heri.png
-            - airport.png
-            - katana.png
-            - akita.png
-            - haji.png
-            - bank.png
-    </py-env>   
-  </head>
+<head>
+  <title>桃鉄ワールド ❘ カード売り場</title>
+  <meta charset="utf-8" />
+  <link rel="icon" type="image/x-icon" href="./favicon.png" />
+  <link
+      rel="stylesheet"
+      href="https://pyscript.net/latest/pyscript.css"
+  />
+  <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+  <link rel="stylesheet" href="./assets/css/examples.css" />
+</head> 
 
   <body>
     <div style="width: 100%; height: 2em; background-color:#008080; color:#fff">
-    <h1>桃鉄ワールド　いつものマップ</h1>
-    </div> 
-    <div id="folium" style="width: 100%; height: 100%; background-color:#ccc"></div>
-      <py-script output="folium">
+        <h1 style="font-size: 1em;">桃鉄ワールド　いつものマップ</h1>
+    </div>
+    <div id="folium"></div>
 
-import pandas as pd
-import folium
+            <py-tutor>
+                <py-config>
+                    packages = [
+                      "folium",
+                      "pandas"
+                    ]
+                    plugins = [
+                      "https://pyscript.net/latest/plugins/python/py_tutor.py"
+                    ]
+                    
+                </py-config>
 
-from pyodide.http import open_url
-from folium.features import DivIcon
-from folium.features import CustomIcon
+                <py-script>
+                    import folium
+                    import json
+                    import pandas as pd
 
-<!--スプレッドシートを読み込む(スプレッドシートのアクセス権を変更すること！)-->
-sheet_url = ("https://docs.google.com/spreadsheets/d/1bG-512BNgFMSKzmBdVZEBzcyc8QsW3k-kOxe85OZE0U/export?format=csv&gid=0")
+                    from pyodide.http import open_url
+                    from folium.features import DivIcon
+                    from folium.features import CustomIcon
 
-url_content = open_url(sheet_url)
-store_lists = pd.read_csv(url_content)
+                    url = (
+                        "https://docs.google.com/spreadsheets/d/1bG-512BNgFMSKzmBdVZEBzcyc8QsW3k-kOxe85OZE0U/export?format=csv&gid=0"
+                    )
+                    
+                    url_content = open_url(url)
+                    store_lists = pd.read_csv(url_content)
+                    
+                    m = folium.Map(location=[3.9948833532516526, 20.82226593026007], zoom_start=2.1,maxZoom=2.5)
 
+                    for index, row in store_lists.iterrows():
+                    
+                        folium.Marker(
+                            location= [row['緯度'],row['経度']],
+                            icon=folium.features.CustomIcon(icon_image="https://github.com/Satocon/satocon.github.io/blob/e7d0e91fbe107ca5ec3cc546bae344aec319be53/"+row['アイコン']+"?raw=true",
+                                                            icon_size=(20,20)),
+                                                            icon_anchor=(10,10),
+                        ).add_to(m)
 
-<!--ここからマップを描く。最初にマップの中心地点と拡大要素を指定しておく-->
-m = folium.Map(location=[3.9948833532516526, 20.82226593026007], zoom_start=2.1,maxZoom=2.5)
-
-
-<!--スプレッドシートの情報を1行ずつ読み込む-->
-for index, row in store_lists.iterrows():
-
-  <!--アイコン追加-->  
-  folium.Marker(
-    location= [row['緯度'],row['経度']],
-    icon=CustomIcon(icon_image=row['アイコン'],
-      icon_size=(20,20),
-      icon_anchor=(10,10),
-      popup_anchor=(0,0)),
-  ).add_to(m)
-
-  <!--駅名を表示する（給油駅の名称はマップがごちゃごちゃするので記載しない）-->
-  if row['エリア'] != '給油駅':
-  
-    folium.map.Marker(
-      location= [row['緯度'],row['経度']],
-      icon=DivIcon(
-        icon_size=(105,20),
-        icon_anchor=(-10,3),
-        html=row['駅名'],),
-      tooltip=row['カード1']+ "\r\n" + row['カード2']+ "\r\n" + row['カード3']+ "\r\n" + row['カード4']+ "\r\n" + row['カード5']+ "\r\n" + row['カード6']+ "\r\n" + row['カード7']+ "\r\n" + row['カード8'],    
-    ).add_to(m)
+                        if row['エリア'] != '給油駅':
+                            folium.Marker(
+                                location= [row['緯度'],row['経度']],
+                                icon=folium.features.DivIcon(icon_size=(105,20),
+                                    icon_anchor=(-10,3),
+                                    html=row['駅名'],),
+                                    tooltip=row['カード1']+ "\r\n" + row['カード2']+ "\r\n" + row['カード3']+ "\r\n" + row['カード4']+ "\r\n" + row['カード5']+ "\r\n" + row['カード6']+ "\r\n" + row['カード7']+ "\r\n" + row['カード8'],
+                            ).add_to(m)
 
 
-  
-folium.LayerControl().add_to(m)
+                    folium.LayerControl().add_to(m)
 
-m
-
-
-      </py-script>    
+                    display(m, target="folium")
+                </py-script>
+            </py-tutor> 
   </body>
 </html>
