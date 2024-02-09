@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>桃鉄 ❘ 資産計算電卓</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+    body{
+        display:grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        font-size: 1em;
+        gap:0.2em;
+        text-align: center;
+        margin-left: 0.2em;
+        margin-right:0.2em;
+        width:min-content;
+        /*place-items: center;←ダメだった*/
+        }
+    div{background-color:white;
+    }
+    input{
+        width:2.5em;
+        font-size: 1.5em;
+        border: solid gray 10px;
+    }
+    .font_red{/*引き算の入力欄*/
+        color:red;
+        border: solid #8c5454 10px;
+    }
+    input.vertical{/*計算するボタン*/
+        margin-top: 2em;
+        font-size:0.7em;
+        height:2em;
+        width:5em;
+        border:solid gray 2px;
+    }
+    .bg_darkblue{
+        background-color:#2c3248;
+        color:white;
+        font-size: 3em;
+    }
+    .bg_darkred{
+        background-color:darkred;
+        color:white;
+        font-size: 3em;
+    }
+    .bg_gray{
+        background-color: #aaa;
+        color:black;
+        border:solid gray 2px;
+        padding-top: 1em;
+    }
+    .blue{
+        background-color: blue;
+        color:white;
+        width:2em;
+        padding-top: 0em;
+        margin-left: auto;
+    }.red{
+        background-color: red;
+        color:white;
+        width:2em;
+        padding-top: 0em;
+        margin-left: auto;
+    }
+    .yellow{
+        background-color: yellow;
+        width:2em;
+        padding-top: 0em;
+        margin-left: auto;
+    }
+    .green{
+        background-color: green;
+        width:2em;
+        color:white;
+        padding-top: 0em;
+        margin-left: auto;
+    }
+    .width_2em{
+        width:2em;
+    }
+    </style>
+  </head>
+  <body>
+    <div class="width_2em"></div><div class="bg_darkblue">＋</div><div class="bg_darkred">－</div><div></div><div class="bg_gray">総資産</div>
+    <div class="blue">青<br>番</div><div><input type="number" id="blue_add"></div><div><input type="number" id="blue_substract" class="font_red" placeholder="-"></div><div id="calculate"><input type="button" value="計算する" onclick="calculation(this)" class="vertical" id="blue"></div><div><input type="number" id="blue_total"></div>
+    <div class="red">赤<br>番</div><div><input type="number" id="red_add"></div><div><input type="number" id="red_substract" class="font_red" placeholder="-"></div><div id="calculate"><input type="button" value="計算する" onclick="calculation(this)" class="vertical" id="red"></div><div><input type="number" id="red_total"></div>
+    <div class="yellow">黄<br>番</div><div><input type="number" id="yellow_add"></div><div><input type="number" id="yellow_substract" class="font_red" placeholder="-"></div><div id="calculate"><input type="button" value="計算する" onclick="calculation(this)" class="vertical" id="yellow"></div><div><input type="number" id="yellow_total"></div>
+    <div class="green">緑<br>番</div><div><input type="number" id="green_add"></div><div><input type="number" id="green_substract" class="font_red" placeholder="-"></div><div id="calculate"><input type="button" value="計算する" onclick="calculation(this)" class="vertical" id="green"></div><div><input type="number" id="green_total"></div>
+
+
+    <script>
+
+        function calculation(event){
+
+            const color = event.id;/*青番～緑番のどのボタンを押したかの情報を取得する*/
+
+            const colorAdd = document.getElementById(color + "_add");/*足し算のセルを選択*/            
+            const colorSubstract = document.getElementById(color + "_substract");/*引き算のセルを選択*/            
+            const colorTotal = document.getElementById(color + "_total");
+                        
+            const colorTotalNewValue = Number(colorTotal.value) + Number(colorAdd.value) - Number(colorSubstract.value);
+            console.log(colorTotalNewValue);
+
+        
+
+            if(colorTotalNewValue < 0){
+                colorTotal.style.color = "red";
+            }else{colorTotal.style.color = "black";}
+            
+
+            colorTotal.value = colorTotalNewValue;
+
+            
+        
+            clearValue();
+
+            function clearValue(){
+                const colorAdd2 = document.getElementById(color + "_add");
+                colorAdd2.value="";
+                const colorSubstract2 = document.getElementById(color + "_substract");
+                colorSubstract2.value="";
+            }
+        }
+
+        
+        
+    </script>
+
+  </body>
+</html>
