@@ -1,7 +1,10 @@
 # satcon.github.io
 非エンジニアですが、Pyscriptで桃鉄ワールドのカード売り場マップを作製しています。  
+## 2024年2月改定箇所
+①```<py-env>```が使えなくなったため、```<py-config>```に変更。  
+②画像ファイルが相対パスで読み込めなくなったので、絶対パスに変更。
 
-## 作成方法
+## マップ作成方法
 ### ①Google spreadsheetにデータを整理
 【参考】今回、使っているスプレッドシートはこれです↓。  
 https://docs.google.com/spreadsheets/d/1bG-512BNgFMSKzmBdVZEBzcyc8QsW3k-kOxe85OZE0U/edit?usp=sharing  
@@ -25,8 +28,8 @@ https://docs.google.com/spreadsheets/d/スプレッドシートID/export?format=
 インテンドを間違えるとエラーになるので注意する。
 
 ## 悪戦苦闘したところ
-(1)アイコンの図を読み込む際は```<head>```内の```<py-env>```でパスをあらかじめ記載しておかないと「FilieNotFound」エラーになる。  
-(2)```<py-script>```内の```<output>```のidを指定しないと画面が真っ白で何も表示されないもよう。
+~~(1)アイコンの図を読み込む際は```<head>```内の```<py-env>```でパスをあらかじめ記載しておかないと「FilieNotFound」エラーになる。~~  
+(2)```<py-script>```内の```<output>```のidを指定しないと画面が真っ白で何も表示されないもよう。  
 成功例```<div id="任意の文字"></div>  　 
 <py-script output="上記divで指定したidと同じ文字列">```  
 (3)シートIDは最初のシート番号が「0」だったので次のシート番号は「1」かと思ったらそうではない。  
