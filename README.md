@@ -2,7 +2,7 @@
 非エンジニアですが、Pyscriptで桃鉄ワールドのカード売り場マップを作製しています。  
 
 ## マップ作成方法
-コードは./index.htmlをコピペしてください。
+コードはindex.htmlをコピペして使ってください。
 ### ①Google spreadsheetにデータを整理
 【参考】今回、使っているスプレッドシートはこれです↓。  
 https://docs.google.com/spreadsheets/d/1bG-512BNgFMSKzmBdVZEBzcyc8QsW3k-kOxe85OZE0U/edit?usp=sharing  
