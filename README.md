@@ -1,10 +1,8 @@
 # satcon.github.io
 非エンジニアですが、Pyscriptで桃鉄ワールドのカード売り場マップを作製しています。  
-## 2024年2月改定箇所
-①```<py-env>```が使えなくなったため、```<py-config>```に変更。  
-②画像ファイルが相対パスで読み込めなくなったので、絶対パスに変更。
 
 ## マップ作成方法
+コードは<a heref="index.html">index.html</a>をコピペしてください。
 ### ①Google spreadsheetにデータを整理
 【参考】今回、使っているスプレッドシートはこれです↓。  
 https://docs.google.com/spreadsheets/d/1bG-512BNgFMSKzmBdVZEBzcyc8QsW3k-kOxe85OZE0U/edit?usp=sharing  
@@ -35,3 +33,6 @@ https://docs.google.com/spreadsheets/d/スプレッドシートID/export?format=
 (3)シートIDは最初のシート番号が「0」だったので次のシート番号は「1」かと思ったらそうではない。  
 シートを開いている時にURLに表示される末尾の数字10桁ぐらいがシート番号。
 
+## 2024年2月改定箇所
+①```<py-env>```が使えなくなったため、```<py-config>```に変更。  
+②画像ファイルが相対パスで読み込めなくなったので、絶対パスに変更。
