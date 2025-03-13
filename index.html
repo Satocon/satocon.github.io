@@ -7,7 +7,12 @@
       rel="stylesheet"
       href="https://pyscript.net/latest/pyscript.css"
   />
-  <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+  <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+  <script type="module">
+    const loading = document.getElementById('loading');
+    addEventListener('py:ready', () => loading.close());
+    loading.showModal();
+  </script>
   <link rel="stylesheet" href="./assets/css/examples.css" />
 </head> 
 
@@ -25,6 +30,7 @@
                 </py-config>
 
                 <py-script>
+                    from pyscript import display
                     import folium
                     import json
                     import pandas as pd
