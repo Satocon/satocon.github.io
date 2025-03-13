@@ -13,9 +13,17 @@
       addEventListener('py:ready', () => loading.close());
       loading.showModal();
   </script>
+  <style>
+    body, body a{
+      color:white;
+    }
+  </style>
   </head> 
 
   <body>
+    <dialog id="loading">
+        <h1>Loading...</h1>
+    </dialog>
     <div style="width: 100%; height: 2em; background-color:#008080; color:#fff">
         <h1 style="font-size: 1em;">桃鉄ワールド　とくべつマップ</h1>
     </div>
@@ -92,12 +100,8 @@
                                     tooltip=row['カード1']+ "\r\n" + row['カード2']+ "\r\n" + row['カード3']+ "\r\n" + row['カード4']+ "\r\n" + row['カード5']+ "\r\n" + row['カード6']+ "\r\n" + row['カード7']+ "\r\n" + row['カード8'],
                             ).add_to(m)
 
-
                   folium.LayerControl().add_to(m)
-
-                  display(m, target="folium")
-                  
-                  
-      </py-script>    
+                  display(m, target="folium")                  
+                </py-script>    
   </body>
 </html>

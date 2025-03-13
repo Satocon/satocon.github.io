@@ -13,9 +13,17 @@
       addEventListener('py:ready', () => loading.close());
       loading.showModal();
   </script>
+  <style>
+    body, body a{
+      color:white;
+    }
+  </style>
 </head> 
 
   <body>
+    <dialog id="loading">
+        <h1>Loading...</h1>
+    </dialog>
     <div style="width: 100%; height: 2em; background-color:#008080; color:#fff">
         <h1 style="font-size: 1em;">桃鉄ワールド　いつものマップ</h1>
     </div>
