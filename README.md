@@ -39,6 +39,9 @@ https://docs.google.com/spreadsheets/d/スプレッドシートID/export?format=
 画像を絶対パスで読み込む方法<br>Github上に画像ファイルをアップ⇒画面右上の「・・・」ボタンを押す⇒「Copy permalink」を選択して絶対パスを取得する。
 ## 2025年3月改定箇所
 ①Script type="module"に変更<br>
+修正前```<script defer src="https://pyscript.net/latest/pyscript.js"></script>```<br>
+修正後<br>
+```<script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>```<br>
 ```<script type="module">```<br>
 ```const loading = document.getElementById('loading');```<br>
 ```addEventListener('py:ready', () => loading.close());```<br>
