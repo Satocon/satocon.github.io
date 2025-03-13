@@ -37,3 +37,12 @@ https://docs.google.com/spreadsheets/d/スプレッドシートID/export?format=
 ①```<py-env>```が使えなくなったため、```<py-config>```に変更。  
 ②画像ファイルが相対パスで読み込めなくなったので、絶対パスに変更。<br>
 画像を絶対パスで読み込む方法<br>Github上に画像ファイルをアップ⇒画面右上の「・・・」ボタンを押す⇒「Copy permalink」を選択して絶対パスを取得する。
+## 2025年3月改定箇所
+①Script type="module"に変更<br>
+```<script type="module">```<br>
+```const loading = document.getElementById('loading');```<br>
+```addEventListener('py:ready', () => loading.close());```<br>
+```loading.showModal();```<br>
+```</script>```<br>
+②「from pyscript import display」追加
+
