@@ -38,14 +38,19 @@ https://docs.google.com/spreadsheets/d/スプレッドシートID/export?format=
 ②画像ファイルが相対パスで読み込めなくなったので、絶対パスに変更。<br>
 画像を絶対パスで読み込む方法<br>Github上に画像ファイルをアップ⇒画面右上の「・・・」ボタンを押す⇒「Copy permalink」を選択して絶対パスを取得する。
 ## 2025年3月改定箇所
-①Script type="module"に変更<br>
+①Script typeを変更<br>
 修正前```<script defer src="https://pyscript.net/latest/pyscript.js"></script>```<br>
-修正後<br>
-```<script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>```<br>
+修正後```<script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>```<br>
+②「from pyscript import display」追加<br>
+③マップが表示されるまで時間がかかるので「Loading…」を追加<br>
+(1)head部位<br>
 ```<script type="module">```<br>
 ```const loading = document.getElementById('loading');```<br>
 ```addEventListener('py:ready', () => loading.close());```<br>
 ```loading.showModal();```<br>
 ```</script>```<br>
-②「from pyscript import display」追加
+(2)body部位<br>
+```<dialog id="loading">```<br>
+```<h1>Loading...</h1>```<br>
+```</dialog>```<br>
 
